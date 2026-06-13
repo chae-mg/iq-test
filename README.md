@@ -6,7 +6,7 @@ Korean self-check IQ-style quiz built as a single static HTML page.
 
 Open `index.html` in a browser, or deploy the repository with GitHub Pages.
 
-The test asks for a name and birth date, randomly selects 30 questions from an 80-question bank, and reports:
+The test asks for a name and birth date, randomly selects 30 moderately challenging questions from an 80-question bank, and reports:
 
 - total score
 - approximate level
