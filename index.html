@@ -14,31 +14,27 @@
       --panel: #ffffff;
       --accent: #1f7a68;
       --accent-dark: #15594c;
-      --warn: #b25f18;
       --soft: #e8f3ef;
       --soft-2: #f3eee7;
+      --warn-soft: #fff9f2;
+      --warn-line: #e5b48b;
       --shadow: 0 18px 50px rgba(23, 32, 27, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, "Noto Sans KR", sans-serif;
       background:
         linear-gradient(120deg, rgba(31, 122, 104, 0.09), transparent 36%),
         linear-gradient(240deg, rgba(178, 95, 24, 0.08), transparent 32%),
         var(--bg);
       color: var(--ink);
-      min-height: 100vh;
     }
 
-    button,
-    input {
-      font: inherit;
-    }
+    button, input { font: inherit; }
 
     .app {
       width: min(1120px, calc(100% - 32px));
@@ -61,9 +57,13 @@
       letter-spacing: 0;
     }
 
+    h2, h3 {
+      letter-spacing: 0;
+    }
+
     .subhead {
       margin: 0;
-      max-width: 650px;
+      max-width: 690px;
       color: var(--muted);
       line-height: 1.6;
       font-size: 15px;
@@ -84,8 +84,7 @@
       align-items: start;
     }
 
-    .side,
-    .main {
+    .side, .main {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -103,9 +102,7 @@
       overflow: hidden;
     }
 
-    .panel {
-      padding: 28px;
-    }
+    .panel { padding: 28px; }
 
     .field {
       display: grid;
@@ -195,9 +192,7 @@
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: var(--accent-dark);
-    }
+    .btn:hover { background: var(--accent-dark); }
 
     .btn.secondary {
       background: #eef2ef;
@@ -205,14 +200,8 @@
       border: 1px solid var(--line);
     }
 
-    .btn.secondary:hover {
-      background: #e4eae6;
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .btn.secondary:hover { background: #e4eae6; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .actions {
       display: flex;
@@ -313,12 +302,11 @@
       margin-top: 24px;
     }
 
-    .info-card {
+    .info-card, .report-card, .band-card {
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 16px;
       background: #fbfcfb;
-      min-height: 120px;
     }
 
     .info-card strong {
@@ -326,7 +314,7 @@
       margin-bottom: 8px;
     }
 
-    .info-card span {
+    .info-card span, .small {
       color: var(--muted);
       line-height: 1.55;
       font-size: 14px;
@@ -388,14 +376,7 @@
       margin-top: 16px;
     }
 
-    .report-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px;
-      background: #fff;
-    }
-
-    .report-card h3 {
+    .report-card h3, .band-card h3 {
       margin: 0 0 8px;
       font-size: 17px;
     }
@@ -416,66 +397,19 @@
     }
 
     .weak {
-      border-color: #e5b48b;
-      background: #fff9f2;
+      border-color: var(--warn-line);
+      background: var(--warn-soft);
     }
 
-    .small {
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    .review-list {
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 9px;
-      max-height: 280px;
-      overflow: auto;
-    }
-
-    .review-list li {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px;
-      background: #fbfcfb;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     @media (max-width: 860px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .side {
-        position: static;
-      }
-
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .timer {
-        text-align: left;
-      }
-
-      .intro-grid,
-      .report-grid,
-      .result-head {
-        grid-template-columns: 1fr;
-      }
-
-      .score-ring {
-        width: min(180px, 100%);
-      }
+      .layout { grid-template-columns: 1fr; }
+      .side { position: static; }
+      header { align-items: flex-start; flex-direction: column; }
+      .timer { text-align: left; }
+      .intro-grid, .report-grid, .result-head { grid-template-columns: 1fr; }
+      .score-ring { width: min(180px, 100%); }
     }
 
     @media (max-width: 520px) {
@@ -484,18 +418,9 @@
         padding: 18px 0;
       }
 
-      .panel,
-      .actions {
-        padding: 20px;
-      }
-
-      .actions {
-        flex-direction: column-reverse;
-      }
-
-      .btn {
-        width: 100%;
-      }
+      .panel, .actions { padding: 20px; }
+      .actions { flex-direction: column-reverse; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
@@ -504,7 +429,7 @@
     <header>
       <div>
         <h1>간단 IQ 테스트</h1>
-        <p class="subhead">공식 지능검사가 아닌 자기 점검용 추론 테스트입니다. 이름과 생년월일을 입력한 뒤 30문항을 풀면 점수, 수준, 약한 영역 리포트가 표시됩니다.</p>
+        <p class="subhead">공식 지능검사가 아닌 자기 점검용 추론 테스트입니다. 매번 문제 은행에서 30문항을 무작위로 뽑아 출제하므로 반복 응시 시에도 같은 문제가 계속 나오지 않습니다.</p>
       </div>
       <div class="timer" id="timer">25:00</div>
     </header>
@@ -528,7 +453,8 @@
         <div class="progress-label" id="progressLabel">시작 전</div>
 
         <div class="meta">
-          <div>문항 수: 30문항</div>
+          <div>출제 수: 30문항</div>
+          <div>문제 은행: 80문항</div>
           <div>권장 시간: 25분</div>
           <div>채점 방식: 문항당 1점</div>
         </div>
@@ -543,7 +469,7 @@
       <main class="main">
         <section class="panel" id="introView">
           <h2>시작 전 안내</h2>
-          <p class="small">각 문항은 네 개의 선택지 중 하나를 고르는 방식입니다. 모르는 문제는 가장 그럴듯한 답을 선택하고 넘어가세요. 결과는 학습용 참고 자료이며 실제 IQ 점수로 환산되지 않습니다.</p>
+          <p class="small">각 문항은 네 개의 선택지 중 하나를 고르는 방식입니다. 테스트마다 수리 8문항, 언어 7문항, 논리 8문항, 공간 7문항이 무작위로 구성됩니다. 결과는 학습용 참고 자료이며 실제 IQ 점수로 환산되지 않습니다.</p>
           <div class="intro-grid">
             <div class="info-card">
               <strong>수리 추론</strong>
@@ -581,46 +507,105 @@
   </div>
 
   <script>
-    const questions = [
-      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 2, 4, 8, 16, ?", options: ["24", "30", "32", "36"], answer: 2, note: "이전 수에 2를 곱하는 규칙입니다." },
-      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 3, 6, 12, 24, ?", options: ["36", "42", "48", "54"], answer: 2, note: "매번 2배씩 증가합니다." },
-      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 1, 4, 9, 16, ?", options: ["20", "24", "25", "27"], answer: 2, note: "1², 2², 3², 4² 다음은 5²입니다." },
-      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 100, 90, 81, 73, ?", options: ["64", "66", "68", "70"], answer: 1, note: "10, 9, 8, 7씩 빼는 규칙입니다." },
-      { category: "수리 추론", q: "7 + 3 x 2의 값은?", options: ["13", "17", "20", "26"], answer: 0, note: "곱셈을 먼저 계산합니다." },
-      { category: "수리 추론", q: "15의 절반에 5를 더하면?", options: ["10", "12", "12.5", "15"], answer: 2, note: "15의 절반은 7.5이고, 5를 더하면 12.5입니다." },
-      { category: "수리 추론", q: "다음 중 가장 큰 수는?", options: ["0.7", "3/4", "0.72", "2/3"], answer: 1, note: "3/4는 0.75입니다." },
-      { category: "수리 추론", q: "어떤 수에 5를 더하면 17입니다. 그 수는?", options: ["10", "11", "12", "13"], answer: 2, note: "17에서 5를 빼면 12입니다." },
+    const TOTAL_QUESTIONS = 30;
+    const CATEGORY_QUOTAS = {
+      "수리 추론": 8,
+      "언어 추론": 7,
+      "논리 추론": 8,
+      "공간 추론": 7
+    };
 
-      { category: "언어 추론", q: "의사 : 병원 = 교사 : ?", options: ["학교", "약국", "법원", "시장"], answer: 0, note: "직업과 주로 일하는 장소의 관계입니다." },
-      { category: "언어 추론", q: "'뜨겁다'의 반대말로 가장 알맞은 것은?", options: ["차갑다", "빠르다", "밝다", "무겁다"], answer: 0, note: "온도 개념의 반대입니다." },
-      { category: "언어 추론", q: "다음 중 나머지와 성격이 다른 것은?", options: ["사과", "바나나", "당근", "포도"], answer: 2, note: "당근은 채소이고 나머지는 과일입니다." },
-      { category: "언어 추론", q: "새는 날개로 난다와 가장 비슷한 관계는?", options: ["물고기는 지느러미로 헤엄친다", "자동차는 나무로 달린다", "책은 눈으로 쓴다", "시계는 손으로 잔다"], answer: 0, note: "대상과 이동에 쓰는 신체 부위의 관계입니다." },
-      { category: "언어 추론", q: "단어를 바르게 배열한 문장은?", options: ["먹었다 나는 아침을", "나는 아침을 먹었다", "아침을 먹었다 나는", "나는 먹었다 아침을"], answer: 1, note: "자연스러운 어순은 '나는 아침을 먹었다'입니다." },
-      { category: "언어 추론", q: "'빠르다 : 느리다 = 높다 : ?'에 들어갈 말은?", options: ["낮다", "깊다", "멀다", "작다"], answer: 0, note: "반대말 관계입니다." },
-      { category: "언어 추론", q: "다음 중 동물이 아닌 것은?", options: ["고양이", "독수리", "장미", "돌고래"], answer: 2, note: "장미는 식물입니다." },
+    const questionBank = [
+      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 2, 4, 8, 16, ?", options: ["24", "30", "32", "36"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 3, 6, 12, 24, ?", options: ["36", "42", "48", "54"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 1, 4, 9, 16, ?", options: ["20", "24", "25", "27"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸에 들어갈 수는? 100, 90, 81, 73, ?", options: ["64", "66", "68", "70"], answer: 1 },
+      { category: "수리 추론", q: "7 + 3 x 2의 값은?", options: ["13", "17", "20", "26"], answer: 0 },
+      { category: "수리 추론", q: "15의 절반에 5를 더하면?", options: ["10", "12", "12.5", "15"], answer: 2 },
+      { category: "수리 추론", q: "다음 중 가장 큰 수는?", options: ["0.7", "3/4", "0.72", "2/3"], answer: 1 },
+      { category: "수리 추론", q: "어떤 수에 5를 더하면 17입니다. 그 수는?", options: ["10", "11", "12", "13"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸은? 4, 7, 11, 16, 22, ?", options: ["27", "28", "29", "30"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸은? 2, 6, 18, 54, ?", options: ["108", "128", "162", "216"], answer: 2 },
+      { category: "수리 추론", q: "36의 25%는 얼마입니까?", options: ["6", "8", "9", "12"], answer: 2 },
+      { category: "수리 추론", q: "사과 18개를 6명이 똑같이 나누면 한 명당 몇 개입니까?", options: ["2", "3", "4", "6"], answer: 1 },
+      { category: "수리 추론", q: "5, 8, 14, 23, 35, ? 다음 수는?", options: ["45", "48", "50", "52"], answer: 2 },
+      { category: "수리 추론", q: "9 x 6 - 8의 값은?", options: ["38", "42", "46", "50"], answer: 2 },
+      { category: "수리 추론", q: "1시간 20분은 모두 몇 분입니까?", options: ["70분", "80분", "90분", "120분"], answer: 1 },
+      { category: "수리 추론", q: "어떤 수의 3배가 45라면 그 수는?", options: ["12", "13", "15", "18"], answer: 2 },
+      { category: "수리 추론", q: "다음 수열의 빈칸은? 81, 27, 9, 3, ?", options: ["0", "1", "2", "3"], answer: 1 },
+      { category: "수리 추론", q: "2, 3, 5, 8, 13, ? 다음 수는?", options: ["18", "20", "21", "24"], answer: 2 },
+      { category: "수리 추론", q: "120에서 15를 두 번 빼면?", options: ["75", "80", "90", "105"], answer: 2 },
+      { category: "수리 추론", q: "8개의 상자에 공이 4개씩 들어 있습니다. 공은 모두 몇 개입니까?", options: ["24", "28", "32", "36"], answer: 2 },
 
-      { category: "논리 추론", q: "모든 고양이는 동물입니다. 나비는 고양이입니다. 따라서 나비는 무엇입니까?", options: ["동물", "식물", "물건", "알 수 없음"], answer: 0, note: "조건을 그대로 따르면 나비는 동물입니다." },
-      { category: "논리 추론", q: "철수는 영희보다 키가 크고, 영희는 민수보다 키가 큽니다. 가장 키가 큰 사람은?", options: ["철수", "영희", "민수", "알 수 없음"], answer: 0, note: "철수 > 영희 > 민수입니다." },
-      { category: "논리 추론", q: "빨간 공 3개와 파란 공 2개가 있는 상자에서 하나를 꺼낼 때 더 가능성이 높은 색은?", options: ["빨간색", "파란색", "같다", "알 수 없음"], answer: 0, note: "빨간 공이 더 많습니다." },
-      { category: "논리 추론", q: "A는 B보다 나이가 많고, B는 C보다 나이가 많습니다. 가장 어린 사람은?", options: ["A", "B", "C", "알 수 없음"], answer: 2, note: "A > B > C입니다." },
-      { category: "논리 추론", q: "오늘이 월요일이라면 3일 뒤는 무슨 요일입니까?", options: ["수요일", "목요일", "금요일", "토요일"], answer: 1, note: "화, 수, 목 순서입니다." },
-      { category: "논리 추론", q: "5명이 서로 한 번씩 악수하면 총 몇 번의 악수가 일어납니까?", options: ["5번", "8번", "10번", "20번"], answer: 2, note: "5명 중 2명을 고르는 경우의 수는 10입니다." },
-      { category: "논리 추론", q: "한 방에 초 5개가 켜져 있습니다. 바람이 불어 2개가 꺼졌습니다. 시간이 지난 뒤 남아 있는 초는 몇 개입니까?", options: ["0개", "2개", "3개", "5개"], answer: 1, note: "꺼진 2개는 타지 않고 남고, 켜진 초는 녹아 없어질 수 있습니다." },
-      { category: "논리 추론", q: "2로도 나누어지고 3으로도 나누어지는 가장 작은 두 자리 수는?", options: ["10", "12", "14", "18"], answer: 1, note: "2와 3의 공배수 중 가장 작은 두 자리 수는 12입니다." },
+      { category: "언어 추론", q: "의사 : 병원 = 교사 : ?", options: ["학교", "약국", "법원", "시장"], answer: 0 },
+      { category: "언어 추론", q: "'뜨겁다'의 반대말로 가장 알맞은 것은?", options: ["차갑다", "빠르다", "밝다", "무겁다"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 나머지와 성격이 다른 것은?", options: ["사과", "바나나", "당근", "포도"], answer: 2 },
+      { category: "언어 추론", q: "새는 날개로 난다와 가장 비슷한 관계는?", options: ["물고기는 지느러미로 헤엄친다", "자동차는 나무로 달린다", "책은 눈으로 쓴다", "시계는 손으로 잔다"], answer: 0 },
+      { category: "언어 추론", q: "단어를 바르게 배열한 문장은?", options: ["먹었다 나는 아침을", "나는 아침을 먹었다", "아침을 먹었다 나는", "나는 먹었다 아침을"], answer: 1 },
+      { category: "언어 추론", q: "'빠르다 : 느리다 = 높다 : ?'에 들어갈 말은?", options: ["낮다", "깊다", "멀다", "작다"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 동물이 아닌 것은?", options: ["고양이", "독수리", "장미", "돌고래"], answer: 2 },
+      { category: "언어 추론", q: "책 : 읽다 = 연필 : ?", options: ["쓰다", "먹다", "달리다", "잠자다"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 탈것이 아닌 것은?", options: ["버스", "기차", "비행기", "냉장고"], answer: 3 },
+      { category: "언어 추론", q: "'낮다'와 반대되는 말은?", options: ["높다", "짧다", "넓다", "얇다"], answer: 0 },
+      { category: "언어 추론", q: "요리사 : 음식 = 화가 : ?", options: ["그림", "망치", "약", "편지"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 계절이 아닌 것은?", options: ["봄", "여름", "가을", "아침"], answer: 3 },
+      { category: "언어 추론", q: "'시작'과 가장 반대되는 말은?", options: ["출발", "진행", "끝", "중간"], answer: 2 },
+      { category: "언어 추론", q: "바늘 : 실 = 활 : ?", options: ["화살", "물", "책", "구름"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 색깔을 나타내지 않는 것은?", options: ["빨강", "파랑", "둥금", "노랑"], answer: 2 },
+      { category: "언어 추론", q: "손 : 장갑 = 발 : ?", options: ["양말", "모자", "안경", "벨트"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 나머지와 종류가 다른 것은?", options: ["서울", "부산", "대구", "한강"], answer: 3 },
+      { category: "언어 추론", q: "'정직하다'와 뜻이 가장 가까운 말은?", options: ["솔직하다", "느리다", "화려하다", "차갑다"], answer: 0 },
+      { category: "언어 추론", q: "도서관 : 책 = 미술관 : ?", options: ["그림", "음식", "운동화", "컴퓨터"], answer: 0 },
+      { category: "언어 추론", q: "다음 중 감각과 관련 없는 것은?", options: ["시각", "청각", "후각", "삼각"], answer: 3 },
 
-      { category: "공간 추론", q: "북쪽으로 10m, 동쪽으로 10m, 남쪽으로 10m 걸었습니다. 처음 위치에서 어느 방향에 있습니까?", options: ["북쪽", "동쪽", "남쪽", "서쪽"], answer: 1, note: "북쪽과 남쪽 이동은 상쇄되고 동쪽 이동만 남습니다." },
-      { category: "공간 추론", q: "시계가 정확히 3시를 가리킬 때 시침과 분침 사이의 각도는?", options: ["45도", "60도", "90도", "120도"], answer: 2, note: "3시에서 시침은 3, 분침은 12를 가리켜 90도입니다." },
-      { category: "공간 추론", q: "정육면체의 면은 모두 몇 개입니까?", options: ["4개", "6개", "8개", "12개"], answer: 1, note: "정육면체는 6개의 정사각형 면으로 이루어져 있습니다." },
-      { category: "공간 추론", q: "종이를 한 번 반으로 접으면 겹쳐지는 면의 수는 몇 겹입니까?", options: ["1겹", "2겹", "3겹", "4겹"], answer: 1, note: "한 번 접으면 두 겹이 됩니다." },
-      { category: "공간 추론", q: "왼쪽을 보고 있던 사람이 오른쪽으로 180도 돌면 어느 쪽을 봅니까?", options: ["왼쪽", "오른쪽", "위쪽", "아래쪽"], answer: 1, note: "180도 회전하면 반대 방향을 봅니다." },
-      { category: "공간 추론", q: "가로 3칸, 세로 3칸인 격자에는 작은 칸이 몇 개 있습니까?", options: ["6개", "8개", "9개", "12개"], answer: 2, note: "3 x 3 = 9입니다." },
-      { category: "공간 추론", q: "삼각형 2개를 붙여 가장 쉽게 만들 수 있는 사각형은?", options: ["원", "사각형", "오각형", "육각형"], answer: 1, note: "두 삼각형을 붙이면 사각형을 만들 수 있습니다." }
+      { category: "논리 추론", q: "모든 고양이는 동물입니다. 나비는 고양이입니다. 따라서 나비는 무엇입니까?", options: ["동물", "식물", "물건", "알 수 없음"], answer: 0 },
+      { category: "논리 추론", q: "철수는 영희보다 키가 크고, 영희는 민수보다 키가 큽니다. 가장 키가 큰 사람은?", options: ["철수", "영희", "민수", "알 수 없음"], answer: 0 },
+      { category: "논리 추론", q: "빨간 공 3개와 파란 공 2개가 있는 상자에서 하나를 꺼낼 때 더 가능성이 높은 색은?", options: ["빨간색", "파란색", "같다", "알 수 없음"], answer: 0 },
+      { category: "논리 추론", q: "A는 B보다 나이가 많고, B는 C보다 나이가 많습니다. 가장 어린 사람은?", options: ["A", "B", "C", "알 수 없음"], answer: 2 },
+      { category: "논리 추론", q: "오늘이 월요일이라면 3일 뒤는 무슨 요일입니까?", options: ["수요일", "목요일", "금요일", "토요일"], answer: 1 },
+      { category: "논리 추론", q: "5명이 서로 한 번씩 악수하면 총 몇 번의 악수가 일어납니까?", options: ["5번", "8번", "10번", "20번"], answer: 2 },
+      { category: "논리 추론", q: "한 방에 초 5개가 켜져 있습니다. 바람이 불어 2개가 꺼졌습니다. 시간이 지난 뒤 남아 있는 초는 몇 개입니까?", options: ["0개", "2개", "3개", "5개"], answer: 1 },
+      { category: "논리 추론", q: "2로도 나누어지고 3으로도 나누어지는 가장 작은 두 자리 수는?", options: ["10", "12", "14", "18"], answer: 1 },
+      { category: "논리 추론", q: "모든 새는 날 수 있다고 가정합니다. 펭귄은 새입니다. 이 가정에서는 펭귄은?", options: ["날 수 있다", "날 수 없다", "물고기다", "알 수 없다"], answer: 0 },
+      { category: "논리 추론", q: "민지는 수진보다 빠르고, 수진은 다현보다 빠릅니다. 가장 느린 사람은?", options: ["민지", "수진", "다현", "알 수 없음"], answer: 2 },
+      { category: "논리 추론", q: "동전 하나를 던질 때 앞면이 나올 가능성과 뒷면이 나올 가능성은?", options: ["앞면이 더 높다", "뒷면이 더 높다", "같다", "알 수 없다"], answer: 2 },
+      { category: "논리 추론", q: "상자 A에는 공 1개, 상자 B에는 공 4개가 있습니다. 공을 더 많이 가진 상자는?", options: ["A", "B", "같다", "알 수 없음"], answer: 1 },
+      { category: "논리 추론", q: "오전 9시에서 5시간 뒤는 몇 시입니까?", options: ["12시", "1시", "2시", "3시"], answer: 2 },
+      { category: "논리 추론", q: "세 사람이 줄을 설 수 있는 서로 다른 순서는 몇 가지입니까?", options: ["3가지", "4가지", "6가지", "9가지"], answer: 2 },
+      { category: "논리 추론", q: "모든 장미는 꽃입니다. 어떤 꽃은 빨간색입니다. 반드시 참인 것은?", options: ["모든 장미는 빨간색이다", "모든 빨간 것은 꽃이다", "장미는 꽃이다", "꽃은 모두 장미다"], answer: 2 },
+      { category: "논리 추론", q: "한 줄에 4명이 서 있습니다. 앞에서 두 번째 사람은 뒤에서 몇 번째입니까?", options: ["첫 번째", "두 번째", "세 번째", "네 번째"], answer: 2 },
+      { category: "논리 추론", q: "사과가 배보다 무겁고, 배가 귤보다 무겁습니다. 가장 가벼운 것은?", options: ["사과", "배", "귤", "알 수 없음"], answer: 2 },
+      { category: "논리 추론", q: "비가 오면 길이 젖습니다. 지금 길이 젖어 있습니다. 반드시 비가 온 것입니까?", options: ["그렇다", "아니다", "항상 그렇다", "알 수 없다"], answer: 3 },
+      { category: "논리 추론", q: "상자에 검은 공 5개와 흰 공 5개가 있습니다. 공 하나를 꺼낼 때 두 색의 가능성은?", options: ["검은색이 높다", "흰색이 높다", "같다", "없다"], answer: 2 },
+      { category: "논리 추론", q: "어떤 수는 짝수입니다. 그 수에 1을 더하면?", options: ["항상 짝수", "항상 홀수", "항상 0", "알 수 없음"], answer: 1 },
+
+      { category: "공간 추론", q: "북쪽으로 10m, 동쪽으로 10m, 남쪽으로 10m 걸었습니다. 처음 위치에서 어느 방향에 있습니까?", options: ["북쪽", "동쪽", "남쪽", "서쪽"], answer: 1 },
+      { category: "공간 추론", q: "시계가 정확히 3시를 가리킬 때 시침과 분침 사이의 각도는?", options: ["45도", "60도", "90도", "120도"], answer: 2 },
+      { category: "공간 추론", q: "정육면체의 면은 모두 몇 개입니까?", options: ["4개", "6개", "8개", "12개"], answer: 1 },
+      { category: "공간 추론", q: "종이를 한 번 반으로 접으면 겹쳐지는 면의 수는 몇 겹입니까?", options: ["1겹", "2겹", "3겹", "4겹"], answer: 1 },
+      { category: "공간 추론", q: "왼쪽을 보고 있던 사람이 오른쪽으로 180도 돌면 어느 쪽을 봅니까?", options: ["왼쪽", "오른쪽", "위쪽", "아래쪽"], answer: 1 },
+      { category: "공간 추론", q: "가로 3칸, 세로 3칸인 격자에는 작은 칸이 몇 개 있습니까?", options: ["6개", "8개", "9개", "12개"], answer: 2 },
+      { category: "공간 추론", q: "삼각형 2개를 붙여 가장 쉽게 만들 수 있는 사각형은?", options: ["원", "사각형", "오각형", "육각형"], answer: 1 },
+      { category: "공간 추론", q: "오른쪽으로 한 번, 다시 오른쪽으로 한 번 돌면 처음 방향에서 몇 도 돈 것입니까?", options: ["90도", "180도", "270도", "360도"], answer: 1 },
+      { category: "공간 추론", q: "정사각형의 네 모서리를 모두 자르면 모서리는 몇 개가 됩니까?", options: ["4개", "6개", "8개", "10개"], answer: 2 },
+      { category: "공간 추론", q: "동쪽을 보고 있다가 왼쪽으로 90도 돌면 어느 쪽을 봅니까?", options: ["북쪽", "남쪽", "동쪽", "서쪽"], answer: 0 },
+      { category: "공간 추론", q: "가로 4칸, 세로 2칸인 격자에는 작은 칸이 몇 개 있습니까?", options: ["6개", "8개", "10개", "12개"], answer: 1 },
+      { category: "공간 추론", q: "정육면체를 위에서 보면 가장 일반적으로 어떤 모양입니까?", options: ["삼각형", "원", "정사각형", "오각형"], answer: 2 },
+      { category: "공간 추론", q: "시계가 6시를 가리킬 때 시침과 분침 사이의 각도는?", options: ["90도", "120도", "180도", "270도"], answer: 2 },
+      { category: "공간 추론", q: "앞으로 5m, 뒤로 2m 이동하면 처음 위치에서 얼마나 떨어져 있습니까?", options: ["2m", "3m", "5m", "7m"], answer: 1 },
+      { category: "공간 추론", q: "정삼각형의 꼭짓점은 몇 개입니까?", options: ["2개", "3개", "4개", "6개"], answer: 1 },
+      { category: "공간 추론", q: "북쪽을 보고 있다가 오른쪽으로 90도 돌면 어느 쪽을 봅니까?", options: ["동쪽", "서쪽", "남쪽", "북쪽"], answer: 0 },
+      { category: "공간 추론", q: "한 변이 2cm인 정사각형의 둘레는?", options: ["4cm", "6cm", "8cm", "10cm"], answer: 2 },
+      { category: "공간 추론", q: "종이를 두 번 반으로 접으면 겹쳐지는 면은 몇 겹입니까?", options: ["2겹", "3겹", "4겹", "8겹"], answer: 2 },
+      { category: "공간 추론", q: "서쪽으로 4m, 동쪽으로 7m 이동하면 처음 위치에서 어느 쪽에 있습니까?", options: ["서쪽 3m", "동쪽 3m", "서쪽 11m", "동쪽 11m"], answer: 1 },
+      { category: "공간 추론", q: "직사각형을 대각선으로 자르면 어떤 도형 2개가 생깁니까?", options: ["삼각형", "원", "오각형", "육각형"], answer: 0 }
     ];
 
     const state = {
       started: false,
       current: 0,
-      answers: Array(questions.length).fill(null),
+      questions: [],
+      answers: [],
       secondsLeft: 25 * 60,
       timerId: null,
       user: null
@@ -633,6 +618,24 @@
     const timer = $("timer");
     const progressBar = $("progressBar");
     const progressLabel = $("progressLabel");
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildQuestionSet() {
+      const selected = [];
+      Object.entries(CATEGORY_QUOTAS).forEach(([category, count]) => {
+        const pool = questionBank.filter((item) => item.category === category);
+        selected.push(...shuffle(pool).slice(0, count));
+      });
+      return shuffle(selected);
+    }
 
     function validateBirthDate(value) {
       if (!/^\d{8}$/.test(value)) return false;
@@ -683,13 +686,13 @@
 
     function updateProgress() {
       const answered = state.answers.filter((answer) => answer !== null).length;
-      progressBar.style.width = `${(answered / questions.length) * 100}%`;
-      progressLabel.textContent = `${answered}/${questions.length}문항 응답 완료`;
+      progressBar.style.width = `${(answered / TOTAL_QUESTIONS) * 100}%`;
+      progressLabel.textContent = `${answered}/${TOTAL_QUESTIONS}문항 응답 완료`;
     }
 
     function renderQuestion() {
-      const item = questions[state.current];
-      $("questionNumber").textContent = `문항 ${state.current + 1} / ${questions.length}`;
+      const item = state.questions[state.current];
+      $("questionNumber").textContent = `문항 ${state.current + 1} / ${TOTAL_QUESTIONS}`;
       $("questionCategory").textContent = item.category;
       $("questionText").textContent = item.q;
       $("options").innerHTML = "";
@@ -708,7 +711,7 @@
       });
 
       $("prevBtn").disabled = state.current === 0;
-      $("nextBtn").textContent = state.current === questions.length - 1 ? "결과 보기" : "다음";
+      $("nextBtn").textContent = state.current === TOTAL_QUESTIONS - 1 ? "결과 보기" : "다음";
       updateProgress();
     }
 
@@ -728,7 +731,8 @@
 
       state.started = true;
       state.current = 0;
-      state.answers = Array(questions.length).fill(null);
+      state.questions = buildQuestionSet();
+      state.answers = Array(TOTAL_QUESTIONS).fill(null);
       state.secondsLeft = 25 * 60;
       state.user = { name, birth, age: calculateAge(birth) };
       $("userName").disabled = true;
@@ -742,16 +746,47 @@
     }
 
     function getLevel(score) {
-      if (score >= 26) return { title: "매우 우수", desc: "규칙을 빠르게 찾고 조건을 안정적으로 처리하는 편입니다." };
-      if (score >= 21) return { title: "평균 이상", desc: "대부분의 기초 추론 과제를 잘 해결합니다." };
-      if (score >= 16) return { title: "보통", desc: "기본 추론은 가능하지만 일부 영역에서 실수가 누적될 수 있습니다." };
-      if (score >= 11) return { title: "기초 보완 필요", desc: "문제 조건을 천천히 확인하고 규칙 찾기 연습을 늘리는 것이 좋습니다." };
-      return { title: "재점검 권장", desc: "시간 제한 없이 다시 풀어보며 문제 유형을 익히는 것을 권장합니다." };
+      if (score >= 27) return {
+        title: "매우 우수",
+        desc: "짧은 시간 안에 규칙, 조건, 공간 정보를 안정적으로 처리하는 편입니다.",
+        school: "대략 고등학생 상위권 이상 수준의 추론 안정성",
+        ageNote: "성인 기준으로도 빠르고 정확한 편에 가깝습니다."
+      };
+      if (score >= 23) return {
+        title: "우수",
+        desc: "대부분의 문제 유형을 정확히 이해하고 실수도 적은 편입니다.",
+        school: "대략 중3~고등학생 수준 이상의 추론력",
+        ageNote: "일상적 학습·업무 추론에는 충분히 강한 편입니다."
+      };
+      if (score >= 18) return {
+        title: "평균 이상",
+        desc: "기본 규칙과 조건을 잘 처리하지만 일부 복합 문제에서 흔들릴 수 있습니다.",
+        school: "대략 중학생 후반~고등학생 초반 수준",
+        ageNote: "성인이라면 보통 이상, 청소년이라면 꽤 좋은 편입니다."
+      };
+      if (score >= 13) return {
+        title: "보통",
+        desc: "기초 추론은 가능하지만 문제 조건을 놓치거나 계산 실수가 누적될 수 있습니다.",
+        school: "대략 초등 고학년~중학생 수준",
+        ageNote: "시간 제한을 줄이고 다시 풀면 점수가 오를 가능성이 큽니다."
+      };
+      if (score >= 8) return {
+        title: "기초 보완 필요",
+        desc: "수열, 조건 비교, 방향 전환 같은 기본 유형을 천천히 연습하는 것이 좋습니다.",
+        school: "대략 초등 중·고학년 기초 추론 수준",
+        ageNote: "성인 결과라면 집중도, 시간 압박, 문제 이해도를 함께 점검해 보세요."
+      };
+      return {
+        title: "재점검 권장",
+        desc: "이 결과만으로 능력을 판단하기보다는 시간 제한 없이 다시 응시해 보는 편이 좋습니다.",
+        school: "기초 문항부터 다시 확인이 필요한 수준",
+        ageNote: "피로, 집중 방해, 문제 읽기 오류의 영향이 컸을 수 있습니다."
+      };
     }
 
     function categoryReport() {
       const grouped = {};
-      questions.forEach((item, index) => {
+      state.questions.forEach((item, index) => {
         if (!grouped[item.category]) grouped[item.category] = { total: 0, correct: 0 };
         grouped[item.category].total += 1;
         if (state.answers[index] === item.answer) grouped[item.category].correct += 1;
@@ -766,12 +801,12 @@
 
     function adviceFor(category) {
       const advice = {
-        "수리 추론": "수열의 차이, 배수, 제곱수처럼 반복되는 규칙을 먼저 확인해 보세요.",
+        "수리 추론": "수열은 차이, 배수, 제곱수, 이전 두 수의 합을 먼저 확인해 보세요.",
         "언어 추론": "단어 사이의 관계가 장소, 반대말, 종류, 기능 중 무엇인지 분류해 보세요.",
-        "논리 추론": "조건을 부등호나 간단한 표로 바꾸면 실수를 줄일 수 있습니다.",
-        "공간 추론": "방향 이동은 좌표처럼 생각하고, 도형 문제는 실제로 머릿속에서 접거나 돌려보는 연습이 도움이 됩니다."
+        "논리 추론": "조건을 부등호나 간단한 표로 바꾸면 순서·가능성 문제의 실수를 줄일 수 있습니다.",
+        "공간 추론": "방향 이동은 좌표처럼 생각하고, 도형은 접기·회전·절단을 머릿속으로 단계별 처리해 보세요."
       };
-      return advice[category] || "오답 유형을 다시 확인해 보세요.";
+      return advice[category] || "낮게 나온 유형을 다시 연습해 보세요.";
     }
 
     function finishTest() {
@@ -781,12 +816,12 @@
       resultView.classList.remove("hidden");
       timer.textContent = "완료";
 
-      const correct = questions.reduce((sum, item, index) => sum + (state.answers[index] === item.answer ? 1 : 0), 0);
+      const correct = state.questions.reduce((sum, item, index) => sum + (state.answers[index] === item.answer ? 1 : 0), 0);
       const level = getLevel(correct);
       const reports = categoryReport();
       const weakestRate = reports[0].rate;
       const weakAreas = reports.filter((item) => item.rate === weakestRate);
-      const angle = Math.round((correct / questions.length) * 360);
+      const angle = Math.round((correct / TOTAL_QUESTIONS) * 360);
       const unanswered = state.answers.filter((answer) => answer === null).length;
 
       const reportCards = reports.map((item) => {
@@ -797,17 +832,10 @@
             <h3>${item.category}</h3>
             <div class="small">${item.correct}/${item.total}개 정답 · ${percent}%</div>
             <div class="meter"><span style="width:${percent}%"></span></div>
-            <div class="small">${isWeak ? adviceFor(item.category) : "현재 수준을 유지하면서 오답 문항만 점검해도 충분합니다."}</div>
+            <div class="small">${isWeak ? adviceFor(item.category) : "현재 강점에 가깝습니다. 같은 유형의 속도와 정확도를 유지해 보세요."}</div>
           </div>
         `;
       }).join("");
-
-      const wrongItems = questions.map((item, index) => ({ item, index }))
-        .filter(({ item, index }) => state.answers[index] !== item.answer)
-        .map(({ item, index }) => {
-          const chosen = state.answers[index] === null ? "미응답" : item.options[state.answers[index]];
-          return `<li><strong>${index + 1}번 ${item.category}</strong><br>선택: ${chosen}<br>정답: ${item.options[item.answer]} · ${item.note}</li>`;
-        }).join("");
 
       resultView.style.setProperty("--score-angle", `${angle}deg`);
       resultView.innerHTML = `
@@ -828,11 +856,15 @@
           </div>
         </div>
 
+        <div class="band-card">
+          <h3>점수 구간 해석</h3>
+          <p class="small"><strong>${level.school}</strong></p>
+          <p class="small">${level.ageNote}</p>
+          <p class="small">이 해석은 공식 연령 규준이 아니라, 이 웹 테스트 난이도 기준의 대략적 참고값입니다.</p>
+        </div>
+
         <h3>영역별 리포트</h3>
         <div class="report-grid">${reportCards}</div>
-
-        <h3>오답 및 미응답 확인</h3>
-        ${wrongItems ? `<ul class="review-list">${wrongItems}</ul>` : `<p class="small">오답이 없습니다.</p>`}
 
         <div class="actions" style="padding-left:0;padding-right:0;border-top:0;background:transparent;">
           <button class="btn secondary" type="button" onclick="location.reload()">처음부터 다시</button>
@@ -850,7 +882,7 @@
       }
     });
     $("nextBtn").addEventListener("click", () => {
-      if (state.current === questions.length - 1) {
+      if (state.current === TOTAL_QUESTIONS - 1) {
         finishTest();
         return;
       }
